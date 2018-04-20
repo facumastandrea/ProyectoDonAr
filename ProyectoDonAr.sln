@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoDonArClassLibrary", "ProyectoDonArClassLibrary\ProyectoDonArClassLibrary.csproj", "{3910C0CF-BC88-4A9C-9867-F11FE25F99DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3910C0CF-BC88-4A9C-9867-F11FE25F99DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3910C0CF-BC88-4A9C-9867-F11FE25F99DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3910C0CF-BC88-4A9C-9867-F11FE25F99DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3910C0CF-BC88-4A9C-9867-F11FE25F99DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4ABED75F-8854-40FF-BDB3-9240EED43172}
+	EndGlobalSection
+EndGlobal
