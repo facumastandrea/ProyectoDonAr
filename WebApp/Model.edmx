@@ -1,0 +1,1065 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProyectoDonArModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accesos">
+          <Key>
+            <PropertyRef Name="idAcceso" />
+          </Key>
+          <Property Name="idAcceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="Latitud" Type="decimal" Precision="12" Scale="9" Nullable="false" />
+          <Property Name="Longitud" Type="decimal" Precision="12" Scale="9" Nullable="false" />
+          <Property Name="FechaAcceso" Type="datetime" Nullable="false" />
+          <Property Name="idLocalidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Administradores">
+          <Key>
+            <PropertyRef Name="idAdministrador" />
+          </Key>
+          <Property Name="idAdministrador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idLocalidad" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="eMail" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Telefono" Type="char" MaxLength="11" />
+          <Property Name="Celular" Type="char" MaxLength="13" />
+          <Property Name="Latitud" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Longitud" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Donaciones">
+          <Key>
+            <PropertyRef Name="idDonacion" />
+          </Key>
+          <Property Name="idDonacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="Monto" Type="float" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imagenes">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProyecto" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="256" />
+          <Property Name="IdTipoImagen" Type="int" />
+          <Property Name="URL" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="idLocalidad" />
+          </Key>
+          <Property Name="idLocalidad" Type="int" Nullable="false" />
+          <Property Name="idProvincia" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="CodPostal" Type="int" />
+        </EntityType>
+        <EntityType Name="Organizaciones">
+          <Key>
+            <PropertyRef Name="idOrganizacion" />
+          </Key>
+          <Property Name="idOrganizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="idLocalidad" Type="int" />
+          <Property Name="Latitud" Type="varchar" MaxLength="64" />
+          <Property Name="Longitud" Type="varchar" MaxLength="64" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="4096" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrganizacion" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="idAdministrador" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="MontoDeseado" Type="float" />
+          <Property Name="MontoActual" Type="float" />
+          <Property Name="idTipoProyecto" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Textos">
+          <Key>
+            <PropertyRef Name="idTexto" />
+          </Key>
+          <Property Name="idTexto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idTipoTexto" Type="int" Nullable="false" />
+          <Property Name="Texto" Type="varchar" MaxLength="4096" />
+        </EntityType>
+        <EntityType Name="TiposImagen">
+          <Key>
+            <PropertyRef Name="idTipoImagen" />
+          </Key>
+          <Property Name="idTipoImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="TiposProyectos">
+          <Key>
+            <PropertyRef Name="idTipoProyecto" />
+          </Key>
+          <Property Name="idTipoProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposTexto">
+          <Key>
+            <PropertyRef Name="idTipoTexto" />
+          </Key>
+          <Property Name="idTipoTexto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idLocalidad" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Contraseña" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="eMail" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Telefono" Type="char" MaxLength="11" />
+          <Property Name="Celular" Type="char" MaxLength="13" />
+          <Property Name="Latitud" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Longitud" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accesos_Localidades">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
+          <End Role="Accesos" Type="Self.Accesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="idLocalidad" />
+            </Principal>
+            <Dependent Role="Accesos">
+              <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Accesos" Type="Self.Accesos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Accesos">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Administradores_Localidades">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
+          <End Role="Administradores" Type="Self.Administradores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="idLocalidad" />
+            </Principal>
+            <Dependent Role="Administradores">
+              <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donaciones_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+          <End Role="Donaciones" Type="Self.Donaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Donaciones">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donaciones_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Donaciones" Type="Self.Donaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Donaciones">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagenes_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Imagenes">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagenes_TiposImagen">
+          <End Role="TiposImagen" Type="Self.TiposImagen" Multiplicity="0..1" />
+          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposImagen">
+              <PropertyRef Name="idTipoImagen" />
+            </Principal>
+            <Dependent Role="Imagenes">
+              <PropertyRef Name="IdTipoImagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localidades_Provincias">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="Localidades">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Administradores">
+          <End Role="Administradores" Type="Self.Administradores" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administradores">
+              <PropertyRef Name="idAdministrador" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Organizaciones">
+          <End Role="Organizaciones" Type="Self.Organizaciones" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizaciones">
+              <PropertyRef Name="idOrganizacion" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idOrganizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_TiposProyectos">
+          <End Role="TiposProyectos" Type="Self.TiposProyectos" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="idTipoProyecto" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idTipoProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Textos_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+          <End Role="Textos" Type="Self.Textos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Textos">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Textos_TiposTexto">
+          <End Role="TiposTexto" Type="Self.TiposTexto" Multiplicity="1" />
+          <End Role="Textos" Type="Self.Textos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposTexto">
+              <PropertyRef Name="idTipoTexto" />
+            </Principal>
+            <Dependent Role="Textos">
+              <PropertyRef Name="idTipoTexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Localidades">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="idLocalidad" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoDonArModelStoreContainer">
+          <EntitySet Name="Accesos" EntityType="Self.Accesos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Administradores" EntityType="Self.Administradores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donaciones" EntityType="Self.Donaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizaciones" EntityType="Self.Organizaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Textos" EntityType="Self.Textos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposImagen" EntityType="Self.TiposImagen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposProyectos" EntityType="Self.TiposProyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposTexto" EntityType="Self.TiposTexto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accesos_Localidades" Association="Self.FK_Accesos_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Accesos" EntitySet="Accesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesos_Usuarios" Association="Self.FK_Accesos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Accesos" EntitySet="Accesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Administradores_Localidades" Association="Self.FK_Administradores_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Administradores" EntitySet="Administradores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donaciones_Proyectos" Association="Self.FK_Donaciones_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Donaciones" EntitySet="Donaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donaciones_Usuarios" Association="Self.FK_Donaciones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Donaciones" EntitySet="Donaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagenes_Proyectos" Association="Self.FK_Imagenes_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagenes_TiposImagen" Association="Self.FK_Imagenes_TiposImagen">
+            <End Role="TiposImagen" EntitySet="TiposImagen" />
+            <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localidades_Provincias" Association="Self.FK_Localidades_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Localidades" EntitySet="Localidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Administradores" Association="Self.FK_Proyectos_Administradores">
+            <End Role="Administradores" EntitySet="Administradores" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Estados" Association="Self.FK_Proyectos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Organizaciones" Association="Self.FK_Proyectos_Organizaciones">
+            <End Role="Organizaciones" EntitySet="Organizaciones" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_TiposProyectos" Association="Self.FK_Proyectos_TiposProyectos">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Textos_Proyectos" Association="Self.FK_Textos_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Textos" EntitySet="Textos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Textos_TiposTexto" Association="Self.FK_Textos_TiposTexto">
+            <End Role="TiposTexto" EntitySet="TiposTexto" />
+            <End Role="Textos" EntitySet="Textos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Localidades" Association="Self.FK_Usuarios_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoDonArModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="idAcceso" />
+          </Key>
+          <Property Name="idAcceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Latitud" Type="Decimal" Precision="12" Scale="9" Nullable="false" />
+          <Property Name="Longitud" Type="Decimal" Precision="12" Scale="9" Nullable="false" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idLocalidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Localidade" Relationship="Self.FK_Accesos_Localidades" FromRole="Accesos" ToRole="Localidades" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Accesos_Usuarios" FromRole="Accesos" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Administradore">
+          <Key>
+            <PropertyRef Name="idAdministrador" />
+          </Key>
+          <Property Name="idAdministrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idLocalidad" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eMail" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Latitud" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Longitud" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Localidade" Relationship="Self.FK_Administradores_Localidades" FromRole="Administradores" ToRole="Localidades" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_Administradores" FromRole="Administradores" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Donacione">
+          <Key>
+            <PropertyRef Name="idDonacion" />
+          </Key>
+          <Property Name="idDonacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="Monto" Type="Double" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Donaciones_Proyectos" FromRole="Donaciones" ToRole="Proyectos" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Donaciones_Usuarios" FromRole="Donaciones" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_Estados" FromRole="Estados" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Imagene">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoImagen" Type="Int32" />
+          <Property Name="URL" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Imagenes_Proyectos" FromRole="Imagenes" ToRole="Proyectos" />
+          <NavigationProperty Name="TiposImagen" Relationship="Self.FK_Imagenes_TiposImagen" FromRole="Imagenes" ToRole="TiposImagen" />
+        </EntityType>
+        <EntityType Name="Localidade">
+          <Key>
+            <PropertyRef Name="idLocalidad" />
+          </Key>
+          <Property Name="idLocalidad" Type="Int32" Nullable="false" />
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodPostal" Type="Int32" />
+          <NavigationProperty Name="Accesos" Relationship="Self.FK_Accesos_Localidades" FromRole="Localidades" ToRole="Accesos" />
+          <NavigationProperty Name="Administradores" Relationship="Self.FK_Administradores_Localidades" FromRole="Localidades" ToRole="Administradores" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_Localidades_Provincias" FromRole="Localidades" ToRole="Provincias" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Localidades" FromRole="Localidades" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Organizacione">
+          <Key>
+            <PropertyRef Name="idOrganizacion" />
+          </Key>
+          <Property Name="idOrganizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Direccion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idLocalidad" Type="Int32" />
+          <Property Name="Latitud" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Longitud" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_Organizaciones" FromRole="Organizaciones" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK_Localidades_Provincias" FromRole="Provincias" ToRole="Localidades" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrganizacion" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="idAdministrador" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MontoDeseado" Type="Double" />
+          <Property Name="MontoActual" Type="Double" />
+          <NavigationProperty Name="Administradore" Relationship="Self.FK_Proyectos_Administradores" FromRole="Proyectos" ToRole="Administradores" />
+          <NavigationProperty Name="Donaciones" Relationship="Self.FK_Donaciones_Proyectos" FromRole="Proyectos" ToRole="Donaciones" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Proyectos_Estados" FromRole="Proyectos" ToRole="Estados" />
+          <NavigationProperty Name="Imagenes" Relationship="Self.FK_Imagenes_Proyectos" FromRole="Proyectos" ToRole="Imagenes" />
+          <NavigationProperty Name="Organizacione" Relationship="Self.FK_Proyectos_Organizaciones" FromRole="Proyectos" ToRole="Organizaciones" />
+          <NavigationProperty Name="Textos" Relationship="ProyectoDonArModel.FK_Textos_Proyectos" FromRole="Proyecto" ToRole="Texto" />
+          <Property Name="idTipoProyecto" Type="Int32" />
+          <NavigationProperty Name="TiposProyecto" Relationship="ProyectoDonArModel.FK_Proyectos_TiposProyectos" FromRole="Proyecto" ToRole="TiposProyecto" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TiposImagen">
+          <Key>
+            <PropertyRef Name="idTipoImagen" />
+          </Key>
+          <Property Name="idTipoImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Imagenes" Relationship="Self.FK_Imagenes_TiposImagen" FromRole="TiposImagen" ToRole="Imagenes" />
+        </EntityType>
+        <EntityType Name="TiposProyecto">
+          <Key>
+            <PropertyRef Name="idTipoProyecto" />
+          </Key>
+          <Property Name="idTipoProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Proyectos" Relationship="ProyectoDonArModel.FK_Proyectos_TiposProyectos" FromRole="TiposProyecto" ToRole="Proyecto" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idLocalidad" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contraseña" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
+          <Property Name="eMail" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Latitud" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Longitud" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Accesos" Relationship="Self.FK_Accesos_Usuarios" FromRole="Usuarios" ToRole="Accesos" />
+          <NavigationProperty Name="Donaciones" Relationship="Self.FK_Donaciones_Usuarios" FromRole="Usuarios" ToRole="Donaciones" />
+          <NavigationProperty Name="Localidade" Relationship="Self.FK_Usuarios_Localidades" FromRole="Usuarios" ToRole="Localidades" />
+        </EntityType>
+        <Association Name="FK_Accesos_Localidades">
+          <End Role="Localidades" Type="Self.Localidade" Multiplicity="1" />
+          <End Role="Accesos" Type="Self.Acceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="idLocalidad" />
+            </Principal>
+            <Dependent Role="Accesos">
+              <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Accesos" Type="Self.Acceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Accesos">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Administradores_Localidades">
+          <End Role="Localidades" Type="Self.Localidade" Multiplicity="1" />
+          <End Role="Administradores" Type="Self.Administradore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="idLocalidad" />
+            </Principal>
+            <Dependent Role="Administradores">
+              <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Administradores">
+          <End Role="Administradores" Type="Self.Administradore" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administradores">
+              <PropertyRef Name="idAdministrador" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donaciones_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Donaciones" Type="Self.Donacione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Donaciones">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donaciones_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Donaciones" Type="Self.Donacione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Donaciones">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Estados">
+          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagenes_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="0..1" />
+          <End Role="Imagenes" Type="Self.Imagene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Imagenes">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagenes_TiposImagen">
+          <End Role="TiposImagen" Type="Self.TiposImagen" Multiplicity="0..1" />
+          <End Role="Imagenes" Type="Self.Imagene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposImagen">
+              <PropertyRef Name="idTipoImagen" />
+            </Principal>
+            <Dependent Role="Imagenes">
+              <PropertyRef Name="IdTipoImagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localidades_Provincias">
+          <End Role="Provincias" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Localidades" Type="Self.Localidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="Localidades">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Localidades">
+          <End Role="Localidades" Type="Self.Localidade" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="idLocalidad" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Organizaciones">
+          <End Role="Organizaciones" Type="Self.Organizacione" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizaciones">
+              <PropertyRef Name="idOrganizacion" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idOrganizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoDonArEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accesos" EntityType="Self.Acceso" />
+          <EntitySet Name="Administradores" EntityType="Self.Administradore" />
+          <EntitySet Name="Donaciones" EntityType="Self.Donacione" />
+          <EntitySet Name="Estados" EntityType="Self.Estado" />
+          <EntitySet Name="Imagenes" EntityType="Self.Imagene" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidade" />
+          <EntitySet Name="Organizaciones" EntityType="Self.Organizacione" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincia" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyecto" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TiposImagens" EntityType="Self.TiposImagen" />
+          <EntitySet Name="TiposProyectos" EntityType="Self.TiposProyecto" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Accesos_Localidades" Association="Self.FK_Accesos_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Accesos" EntitySet="Accesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesos_Usuarios" Association="Self.FK_Accesos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Accesos" EntitySet="Accesos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Administradores_Localidades" Association="Self.FK_Administradores_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Administradores" EntitySet="Administradores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Administradores" Association="Self.FK_Proyectos_Administradores">
+            <End Role="Administradores" EntitySet="Administradores" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donaciones_Proyectos" Association="Self.FK_Donaciones_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Donaciones" EntitySet="Donaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donaciones_Usuarios" Association="Self.FK_Donaciones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Donaciones" EntitySet="Donaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Estados" Association="Self.FK_Proyectos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagenes_Proyectos" Association="Self.FK_Imagenes_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagenes_TiposImagen" Association="Self.FK_Imagenes_TiposImagen">
+            <End Role="TiposImagen" EntitySet="TiposImagens" />
+            <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localidades_Provincias" Association="Self.FK_Localidades_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Localidades" EntitySet="Localidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Localidades" Association="Self.FK_Usuarios_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Organizaciones" Association="Self.FK_Proyectos_Organizaciones">
+            <End Role="Organizaciones" EntitySet="Organizaciones" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <EntitySet Name="Textos" EntityType="ProyectoDonArModel.Texto" />
+          <EntitySet Name="TiposTextoes" EntityType="ProyectoDonArModel.TiposTexto" />
+          <AssociationSet Name="FK_Textos_Proyectos" Association="ProyectoDonArModel.FK_Textos_Proyectos">
+            <End Role="Proyecto" EntitySet="Proyectos" />
+            <End Role="Texto" EntitySet="Textos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Textos_TiposTexto" Association="ProyectoDonArModel.FK_Textos_TiposTexto">
+            <End Role="TiposTexto" EntitySet="TiposTextoes" />
+            <End Role="Texto" EntitySet="Textos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_TiposProyectos" Association="ProyectoDonArModel.FK_Proyectos_TiposProyectos">
+            <End Role="TiposProyecto" EntitySet="TiposProyectos" />
+            <End Role="Proyecto" EntitySet="Proyectos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Texto">
+          <Key>
+            <PropertyRef Name="idTexto" />
+          </Key>
+          <Property Name="idTexto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idTipoTexto" Type="Int32" Nullable="false" />
+          <Property Name="Texto1" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proyecto" Relationship="ProyectoDonArModel.FK_Textos_Proyectos" FromRole="Texto" ToRole="Proyecto" />
+          <NavigationProperty Name="TiposTexto" Relationship="ProyectoDonArModel.FK_Textos_TiposTexto" FromRole="Texto" ToRole="TiposTexto" />
+        </EntityType>
+        <EntityType Name="TiposTexto">
+          <Key>
+            <PropertyRef Name="idTipoTexto" />
+          </Key>
+          <Property Name="idTipoTexto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Textos" Relationship="ProyectoDonArModel.FK_Textos_TiposTexto" FromRole="TiposTexto" ToRole="Texto" />
+        </EntityType>
+        <Association Name="FK_Textos_Proyectos">
+          <End Type="ProyectoDonArModel.Proyecto" Role="Proyecto" Multiplicity="1" />
+          <End Type="ProyectoDonArModel.Texto" Role="Texto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Texto">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Textos_TiposTexto">
+          <End Type="ProyectoDonArModel.TiposTexto" Role="TiposTexto" Multiplicity="1" />
+          <End Type="ProyectoDonArModel.Texto" Role="Texto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposTexto">
+              <PropertyRef Name="idTipoTexto" />
+            </Principal>
+            <Dependent Role="Texto">
+              <PropertyRef Name="idTipoTexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_TiposProyectos">
+          <End Type="ProyectoDonArModel.TiposProyecto" Role="TiposProyecto" Multiplicity="0..1" />
+          <End Type="ProyectoDonArModel.Proyecto" Role="Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyecto">
+              <PropertyRef Name="idTipoProyecto" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="idTipoProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoDonArModelStoreContainer" CdmEntityContainer="ProyectoDonArEntities">
+          <EntitySetMapping Name="Accesos">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Acceso">
+              <MappingFragment StoreEntitySet="Accesos">
+                <ScalarProperty Name="idAcceso" ColumnName="idAcceso" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Administradores">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Administradore">
+              <MappingFragment StoreEntitySet="Administradores">
+                <ScalarProperty Name="idAdministrador" ColumnName="idAdministrador" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donaciones">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Donacione">
+              <MappingFragment StoreEntitySet="Donaciones">
+                <ScalarProperty Name="idDonacion" ColumnName="idDonacion" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Estado">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="Estado1" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagenes">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Imagene">
+              <MappingFragment StoreEntitySet="Imagenes">
+                <ScalarProperty Name="idImagen" ColumnName="idImagen" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoImagen" ColumnName="IdTipoImagen" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidades">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Localidade">
+              <MappingFragment StoreEntitySet="Localidades">
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizaciones">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Organizacione">
+              <MappingFragment StoreEntitySet="Organizaciones">
+                <ScalarProperty Name="idOrganizacion" ColumnName="idOrganizacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyectos">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Proyecto">
+              <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="idTipoProyecto" ColumnName="idTipoProyecto" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idOrganizacion" ColumnName="idOrganizacion" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idAdministrador" ColumnName="idAdministrador" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="MontoDeseado" ColumnName="MontoDeseado" />
+                <ScalarProperty Name="MontoActual" ColumnName="MontoActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposImagens">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.TiposImagen">
+              <MappingFragment StoreEntitySet="TiposImagen">
+                <ScalarProperty Name="idTipoImagen" ColumnName="idTipoImagen" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposProyectos">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.TiposProyecto">
+              <MappingFragment StoreEntitySet="TiposProyectos">
+                <ScalarProperty Name="idTipoProyecto" ColumnName="idTipoProyecto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Textos">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Texto">
+              <MappingFragment StoreEntitySet="Textos">
+                <ScalarProperty Name="Texto1" ColumnName="Texto" />
+                <ScalarProperty Name="idTipoTexto" ColumnName="idTipoTexto" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idTexto" ColumnName="idTexto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposTextoes">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.TiposTexto">
+              <MappingFragment StoreEntitySet="TiposTexto">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idTipoTexto" ColumnName="idTipoTexto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

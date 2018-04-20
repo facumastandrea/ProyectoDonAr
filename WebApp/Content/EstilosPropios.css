@@ -1,0 +1,130 @@
+﻿svg {
+    width: 100%;
+    display: block;
+}
+
+.wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+    .wrapper > #bar, .wrapper > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .wrapper > img {
+        /* Needs appropriate vendor prefixes */
+        box-sizing: border-box;
+        /* This needs to be equal to strokeWidth */
+        padding: 4%;
+    }
+
+    .wrapper > img {
+        border-radius: 50%;
+    }
+
+.progress {
+    height: 35px;
+}
+
+    .progress .skill {
+        font: normal 12px "Open Sans Web";
+        line-height: 35px;
+        padding: 0;
+        margin: 0 0 0 20px;
+        text-transform: uppercase;
+    }
+
+        .progress .skill .val {
+            float: right;
+            font-style: normal;
+            margin: 0 20px 0 0;
+        }
+
+.progress-bar {
+    text-align: left;
+    transition-duration: 3s;
+}
+
+
+/*Portfolio*/
+
+* {
+    box-sizing: border-box;
+}
+
+/* Center website */
+.mainPortfolio {
+    max-width: 1000px;
+    margin: auto;
+    background-color: #f1f1f1;
+    padding: 20px;
+    font-family: Arial;
+}
+
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+}
+
+.rowPortfolio {
+    margin: 10px -16px;
+}
+
+    /* Add padding BETWEEN each column */
+    .rowPortfolio,
+    .rowPortfolio > .columnPortfolio {
+        padding: 8px;
+    }
+
+/* Create three equal columns that floats next to each other */
+.columnPortfolio {
+    float: left;
+    width: 33.33%;
+    display: none; /* Hide columns by default */
+}
+
+/* Clear floats after rows */
+.rowPortfolio:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Content */
+.contentPortfolio {
+    background-color: white;
+    padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.showPortfolio {
+    display: block;
+}
+
+/* Style the buttons */
+.btnPortfolio {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
+    /* Add a grey background color on mouse-over */
+    .btnPortfolio:hover {
+        background-color: #ddd;
+    }
+
+    /* Add a dark background color to the active button */
+    .btnPortfolio.active {
+        background-color: #666;
+        color: white;
+    }
+
+/**********/
