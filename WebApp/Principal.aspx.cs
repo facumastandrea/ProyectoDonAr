@@ -15,6 +15,7 @@ namespace WebApp
 
             using (ProyectoDonArEntities ent = new ProyectoDonArEntities())
             {
+                int i = 1;
                 rptTiposProyectos.DataSource = ent.TiposProyectos.ToArray();
                 rptTiposProyectos.DataBind();
 
