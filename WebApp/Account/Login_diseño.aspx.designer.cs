@@ -10,7 +10,7 @@
 namespace WebApp.Account {
     
     
-    public partial class Login {
+    public partial class Login1 {
         
         /// <summary>
         /// Control Email.

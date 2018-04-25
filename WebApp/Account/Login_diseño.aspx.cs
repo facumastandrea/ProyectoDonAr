@@ -8,13 +8,10 @@ using WebApp.Models;
 
 namespace WebApp.Account
 {
-    public partial class Login : Page
+    public partial class Login1 : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //Page.Master.FindControl("divMaster").Visible = false;
-
             RegisterHyperLink.NavigateUrl = "Register";
             // Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
@@ -47,7 +44,7 @@ namespace WebApp.Account
                         Response.Redirect("/Account/Lockout");
                         break;
                     case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
+                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}",
                                                         Request.QueryString["ReturnUrl"],
                                                         RememberMe.Checked),
                                           true);

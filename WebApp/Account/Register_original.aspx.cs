@@ -9,7 +9,7 @@ using WebApp.Models;
 
 namespace WebApp.Account
 {
-    public partial class Register : Page
+    public partial class Register_original : Page
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {
@@ -24,10 +24,10 @@ namespace WebApp.Account
                 //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>.");
 
-                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
-            else
+            else 
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }

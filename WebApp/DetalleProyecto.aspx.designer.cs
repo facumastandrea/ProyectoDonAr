@@ -13,6 +13,15 @@ namespace WebApp {
     public partial class DetalleProyecto {
         
         /// <summary>
+        /// Control imgPrincipal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPrincipal;
+        
+        /// <summary>
         /// Control lblProyecto.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace WebApp {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDescripcionOrganizacion;
-        
-        /// <summary>
-        /// Control imgPrincipal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPrincipal;
         
         /// <summary>
         /// Control lblIzquierda.

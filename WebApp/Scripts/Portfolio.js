@@ -41,7 +41,11 @@ var btns = btnContainer.getElementsByClassName("btnPortfolio");
 for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function () {
             var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
+            try {
+                current[0].className = current[0].className.replace(" active", "");
+            } catch (e) {
+                //controlado por mi, le saco a todos la clase active cuando se hace click en el mapa
+            }
             this.className += " active";
         });
     }

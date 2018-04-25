@@ -20,7 +20,6 @@ namespace WebApp
             using (ProyectoDonArEntities ent = new ProyectoDonArEntities())
             {
                 Proyecto proyecto = (from p in ent.Proyectos select p).Where(p => p.idProyecto == idproyecto) .First();
-                //Proyecto proyecto = (from p in ent.Proyectos select p).Where(p => p.idProyecto == 4).First();
 
                 Rgallary.DataSource = proyecto.Imagenes.Where(t => t.IdTipoImagen == 3).ToArray(); //Slides
                 Rgallary.DataBind();

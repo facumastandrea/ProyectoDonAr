@@ -1,11 +1,117 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetalleProyecto.aspx.cs" Inherits="WebApp.DetalleProyecto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="container-fluid">
-            <div class="row">
+    
+<style>
+
+	.tabla-detalle{
+		 height:175px; 
+		 width:100%
+	}
+	
+	.bar-margin{
+		margin-bottom:0px;
+	}
+	
+	.div-monto{
+		line-height:175px;
+	}
+	
+	.btn-donar{
+		width:100%;
+	}
+	
+	.col-jumbotron{
+		padding:0px;
+	}
+	.monto-text{
+			width:100%;
+	}
+	
+	.row-donar{
+		padding-bottom:30px;
+	}
+	
+	.jumbotron{
+		background-image: url("imagenes/bg.png") !important;
+		background-repeat: repeat-x repeat-y !important;
+	}
+	
+	@media (max-width: 992px) {
+		.tabla-detalle{
+			height:auto;
+		}
+		.div-monto{
+			line-height:60px;
+		}
+		.wrapper > #bar, .wrapper > img{
+			top:auto;
+			left:auto;
+		}
+	
+	}
+	
+	
+
+</style>    
+    <div class="container">
+    				<div class="row">
+					<div class="jumbotron">
+						<div class="row">
+							<div class="col-md-3 text-center col-jumbotron">
+								<div class="wrapper">
+                                    <asp:Image CssClass="img-thumbnail" ID="imgPrincipal" runat="server" Height="175" Width="175" />
+									<div id="bar">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 text-center">
+								<div class="row">
+									<div class="col-md-12">
+										<asp:Label runat="server" Font-Size="XX-Large" ID="lblProyecto"></asp:Label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<asp:Label runat="server" Font-Size="medium" ID="lblOrganizacion"></asp:Label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<asp:Label runat="server" Font-Size="Small" ID="lblDescripcionOrganizacion">lalalal</asp:Label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-jumbotron">
+								<table class="tabla-detalle">
+									<tr>
+										<td>
+											<div class="progress skill-bar bar-margin">
+												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=this.porcentaje %>" aria-valuemin="0" aria-valuemax="100">
+													<span><%=this.porcentaje %>%</span>
+												</div>
+												
+											</div>
+											<span class="btn btn-success monto-text">Monto deseado $100</span>
+										</td>
+									</tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-info btn-donar btn-lg">Donar</button>
+                                        </td>
+                                    </tr>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+    
+    
+<%--            <div class="row">
                 <div class="jumbotron">
                     <div class="row">
-                        <div class="col-md-12 text-center" style="line-height: 30px;">
+                        <div class="col-md-12 text-center col-jumbotron" style="line-height: 30px;">
                             <asp:Label runat="server" Font-Size="XX-Large" ID="lblProyecto"></asp:Label>
                             <br />
                             <asp:Label runat="server" Font-Size="medium" ID="lblOrganizacion"></asp:Label>
@@ -27,13 +133,13 @@
                         <div class="col-md-9">
                             <div class="progress skill-bar">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=this.porcentaje %>" aria-valuemin="0" aria-valuemax="100">
-                                    <span><%=this.porcentaje %>%</span>
+                                    <span class="btn btn-success monto-text"><%=this.porcentaje %>%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         <div class="row">
             <div class="col-md-6">
                 <asp:Label runat="server" TextMode="MultiLine" ID="lblIzquierda"></asp:Label>
@@ -45,7 +151,7 @@
                             <ItemTemplate>
                                 <div class="item">
                                     <div class="item active">
-                                        <asp:Image ID="imgId" Height="300" Width="300" runat="server" ImageUrl='<%#Eval("URL") %>' />
+                                        <asp:Image ID="imgId" Height="350" Width="100%" runat="server" ImageUrl='<%#Eval("URL") %>' />
                                     </div>
                                 </div>
                             </ItemTemplate>
@@ -66,6 +172,7 @@
             $('.carousel').carousel({
                 interval: 2500
             })
+            $('.carousel').carousel('next');
             porcentaje = <%=this.porcentaje%>;
 
             $('.progress .progress-bar').css("width",

@@ -58,10 +58,11 @@ namespace WebApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "2072071099707049",
+               appSecret: "bc367d310ef4afc056320bbea0f9c1e7");
 
+            /******************************GOOGLE******************************************/
             var authenticationOptions = new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "43077187728-la8ivlpn2te9b7rsnnuf9q15jbl6c6c4.apps.googleusercontent.com",
@@ -93,7 +94,7 @@ namespace WebApp
             };
 
             app.UseGoogleAuthentication(authenticationOptions);
-
+            /**********************************************************************************/
         }
     }
 }

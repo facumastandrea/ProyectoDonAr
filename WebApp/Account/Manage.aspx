@@ -29,7 +29,7 @@
                     </dd>
                     <%--
                         Los números de teléfono se pueden usar como una segunda fase de comprobación en un sistema de autenticación en dos fases.
-                        Vea <a href="http://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
+                        Vea <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
                         para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases mediante SMS.
                         Quite la marca de comentario de los bloques siguientes después de configurar la autenticación en dos fases
                     --%>
@@ -54,7 +54,7 @@
                     <dt>Autenticación de dos factores:</dt>
                     <dd>
                         <p>
-                            No hay ningún proveedor de autenticación en dos fases configurado. Consulte <a href="http://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
+                            No hay ningún proveedor de autenticación en dos fases configurado. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
                              para obtener detalles sobre cómo configurar esta aplicación ASP.NET para que sea compatible con la autenticación en dos fases.
                         </p>
                         <% if (TwoFactorEnabled)
