@@ -69,28 +69,32 @@ namespace WebApp
                 ClientSecret = "73kFlEG1cAmbykqZJTBfkgZo"
             };
             authenticationOptions.Scope.Add("profile");
-            authenticationOptions.Scope.Add("openid");
-            authenticationOptions.Scope.Add("email");
+            //authenticationOptions.Scope.Add("openid");
+            //authenticationOptions.Scope.Add("email");
             // [END configure_google_auth_client]
 
             // [START configure_google_auth_scopes]
             // Add scope to access user's basic profile information
             //authenticationOptions.Scope.Add("profile");
             // [END configure_google_auth_scopes]
-
             authenticationOptions.Provider = new GoogleOAuth2AuthenticationProvider()
             {
+
+                //OnApplyRedirect = context => { context.Response.Write("<script>window.open('" + context.RedirectUri + "', '_blank'); setTimeout(function(){window.close();}), 5000};</script>"); },// context.Response.Redirect(context.RedirectUri); }
+                //OnReturnEndpoint = context => { context.Response.Write("<script>alert(1);window.close();</script>"); return Task.CompletedTask; },
+
+
                 // [START read_google_profile_image_url]
                 // After OAuth authentication completes successfully,
                 // read user's profile image URL from the profile
                 // response data and add it to the current user identity
                 OnAuthenticated = context =>
-                {
-                    var profileUrl = context.User["image"]["url"].ToString();
-                    context.Identity.AddClaim(new Claim(ClaimTypes.Uri, profileUrl));
-                    return Task.FromResult(0);
-                }
-                // [END read_google_profile_image_url]
+                        {
+                            var profileUrl = context.User["image"]["url"].ToString();
+                            context.Identity.AddClaim(new Claim(ClaimTypes.Uri, profileUrl));
+                            return Task.FromResult(0);
+                        }
+                        // [END read_google_profile_image_url]
             };
 
             app.UseGoogleAuthentication(authenticationOptions);

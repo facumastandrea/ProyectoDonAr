@@ -17,7 +17,7 @@
 
 <body>
     <div id="login">
-        <form method="post" runat="server" action="./Login" onsubmit="javascript:return WebForm_OnSubmit();">
+        <form method="post" runat="server" action="./Account/Login" onsubmit="javascript:return WebForm_OnSubmit();">
             <fieldset class="clearfix">
                 <table>
                     <tr>
@@ -93,12 +93,7 @@
 </body>
 </html>
 <script type="text/javascript">
-    //<![CDATA[
-    //function WebForm_OnSubmit() {
-    //    if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
-    //    return true;
-    //}
-    //]]>
+        
     $(document).ready(function () {
         $('#Email').blur(function () { if (this.value == '') this.value = 'Email' });
         $('#Email').focus(function () { if (this.value == 'Email') this.value = '' });

@@ -11,13 +11,11 @@ namespace WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //txtPrueba.Text = Context.User.Identity.Name;
-
-
-
             using (ProyectoDonArEntities ent = new ProyectoDonArEntities())
             {
-                txtPrueba.Text = (from i in ent.Imagenes select i).First().URL;
+                //Si hay alguien logueado y no tiene intereses cargados, redirige a la página para que los elija
+                if(ent.Intereses.Where(i => i.AspNetUser.Email == HttpContext.Current.User.Identity.Name).Count() == 0 && HttpContext.Current.User.Identity.Name != "")
+                    Response.Redirect("Account/Intereses.aspx");
             }
         }
     }

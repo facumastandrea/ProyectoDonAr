@@ -25,20 +25,26 @@ namespace WebApp
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Acceso> Accesos { get; set; }
         public virtual DbSet<Administradore> Administradores { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Donacione> Donaciones { get; set; }
         public virtual DbSet<Estado> Estados { get; set; }
         public virtual DbSet<Imagene> Imagenes { get; set; }
+        public virtual DbSet<Interes> Intereses { get; set; }
         public virtual DbSet<Localidade> Localidades { get; set; }
         public virtual DbSet<Organizacione> Organizaciones { get; set; }
         public virtual DbSet<Provincia> Provincias { get; set; }
         public virtual DbSet<Proyecto> Proyectos { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Texto> Textos { get; set; }
         public virtual DbSet<TiposImagen> TiposImagens { get; set; }
         public virtual DbSet<TiposProyecto> TiposProyectos { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<Texto> Textos { get; set; }
         public virtual DbSet<TiposTexto> TiposTextoes { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

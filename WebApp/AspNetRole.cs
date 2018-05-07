@@ -12,22 +12,18 @@ namespace WebApp
     using System;
     using System.Collections.Generic;
     
-    public partial class TiposProyecto
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TiposProyecto()
+        public AspNetRole()
         {
-            this.Intereses = new HashSet<Interes>();
-            this.Proyectos = new HashSet<Proyecto>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int idTipoProyecto { get; set; }
-        public string Descripcion { get; set; }
-        public string URLImagen { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interes> Intereses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proyecto> Proyectos { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

@@ -27,7 +27,6 @@
 	.monto-text{
 			width:100%;
 	}
-	
 	.row-donar{
 		padding-bottom:30px;
 	}
@@ -92,12 +91,13 @@
 												</div>
 												
 											</div>
-											<span class="btn btn-success monto-text">Monto deseado $100</span>
+                                            <asp:Label CssClass="btn btn-success monto-text" runat="server" id="lblMontoDeseado" />
 										</td>
 									</tr>
                                     <tr>
                                         <td>
                                             <button class="btn btn-info btn-donar btn-lg">Donar</button>
+                                            <a href="<% Response.Write(((Hashtable) preference["response"])["sandbox_init_point"]); %>">Pay</a>
                                         </td>
                                     </tr>
 								</table>
@@ -106,40 +106,6 @@
 						
 					</div>
 				</div>
-    
-    
-<%--            <div class="row">
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-md-12 text-center col-jumbotron" style="line-height: 30px;">
-                            <asp:Label runat="server" Font-Size="XX-Large" ID="lblProyecto"></asp:Label>
-                            <br />
-                            <asp:Label runat="server" Font-Size="medium" ID="lblOrganizacion"></asp:Label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-centered text-left">
-                            <asp:Label runat="server" Font-Size="Small" ID="lblDescripcionOrganizacion">lalalal</asp:Label>
-                        </div>
-                    </div>
-                    <div class="row" style="vertical-align: middle">
-                        <div class="col-md-3" style="vertical-align: middle">
-                            <div class="wrapper" style="vertical-align: middle">
-                                <asp:Image ID="imgPrincipal" runat="server" Height="175" Width="175" />
-                                <div id="bar" style="vertical-align: middle">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="progress skill-bar">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%=this.porcentaje %>" aria-valuemin="0" aria-valuemax="100">
-                                    <span class="btn btn-success monto-text"><%=this.porcentaje %>%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
         <div class="row">
             <div class="col-md-6">
                 <asp:Label runat="server" TextMode="MultiLine" ID="lblIzquierda"></asp:Label>
@@ -150,7 +116,7 @@
                         <asp:Repeater ID="Rgallary" runat="server">
                             <ItemTemplate>
                                 <div class="item">
-                                    <div class="item active">
+                                    <div class="item active" style="border-radius:5px;">
                                         <asp:Image ID="imgId" Height="350" Width="100%" runat="server" ImageUrl='<%#Eval("URL") %>' />
                                     </div>
                                 </div>

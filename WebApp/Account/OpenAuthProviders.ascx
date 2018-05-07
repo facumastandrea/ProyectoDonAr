@@ -41,7 +41,7 @@
         <ItemTemplate>
             <p>
                 <button type="submit" class="btn<%#: Item %>" name="provider" value="<%#: Item %>"
-                    title="Inicie sesión con su <%#: Item %> cuenta.">
+                    title="Iniciá sesión con tu cuenta de <%#: Item %>">
                     <i class="fa fa-<%#: Item.ToLower() %>" style="text-align:center"></i>
                     &emsp;<%#: Item %>    
                 </button>

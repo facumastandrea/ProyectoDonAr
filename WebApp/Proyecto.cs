@@ -39,8 +39,8 @@ namespace WebApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Imagene> Imagenes { get; set; }
         public virtual Organizacione Organizacione { get; set; }
+        public virtual TiposProyecto TiposProyecto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Texto> Textos { get; set; }
-        public virtual TiposProyecto TiposProyecto { get; set; }
     }
 }

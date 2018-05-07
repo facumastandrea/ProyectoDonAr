@@ -15,6 +15,7 @@ namespace WebApp.Account
 
             //Page.Master.FindControl("divMaster").Visible = false;
 
+
             RegisterHyperLink.NavigateUrl = "Register";
             // Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";

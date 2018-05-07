@@ -20,7 +20,8 @@ namespace WebApp.Account
                     return;
                 }
                 // Solicitar un redireccionamiento al proveedor del inicio de sesión externo
-                string redirectUrl = ResolveUrl(String.Format(CultureInfo.InvariantCulture, "~/Account/RegisterExternalLogin?{0}={1}&returnUrl={2}", IdentityHelper.ProviderNameKey, provider, ReturnUrl));
+                string redirectUrl = ResolveUrl(String.Format(CultureInfo.InvariantCulture, "~/Account/RegisterExternalLogin?{0}={1}&returnUrl={2}", IdentityHelper.ProviderNameKey, provider, Request.Url.AbsolutePath));
+                //string redirectUrl = ResolveUrl(String.Format(CultureInfo.InvariantCulture, "~/Account/RegisterExternalLogin?{0}={1}&returnUrl={2}", IdentityHelper.ProviderNameKey, provider, "login.aspx"));
                 var properties = new AuthenticationProperties() { RedirectUri = redirectUrl };
                 // Agregar verificación de xsrf al vincular cuentas
                 if (Context.User.Identity.IsAuthenticated)

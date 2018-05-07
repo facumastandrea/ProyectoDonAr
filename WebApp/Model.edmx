@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProyectoDonArModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProyectoDonArModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Accesos">
           <Key>
             <PropertyRef Name="idAcceso" />
@@ -33,6 +43,57 @@
           <Property Name="FechaAlta" Type="datetime" Nullable="false" />
           <Property Name="FechaBaja" Type="datetime" />
         </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="Donaciones">
           <Key>
             <PropertyRef Name="idDonacion" />
@@ -59,6 +120,14 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="256" />
           <Property Name="IdTipoImagen" Type="int" />
           <Property Name="URL" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Intereses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="nvarchar" MaxLength="128" />
+          <Property Name="idTipoProyecto" Type="int" />
         </EntityType>
         <EntityType Name="Localidades">
           <Key>
@@ -135,6 +204,7 @@
           </Key>
           <Property Name="idTipoProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="URLImagen" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="TiposTexto">
           <Key>
@@ -148,17 +218,18 @@
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idLocalidad" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="Apellido" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="Usuario" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="Contraseña" Type="binary" MaxLength="64" Nullable="false" />
-          <Property Name="eMail" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="idLocalidad" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="64" />
+          <Property Name="Apellido" Type="varchar" MaxLength="64" />
+          <Property Name="Usuario" Type="varchar" MaxLength="32" />
+          <Property Name="Contraseña" Type="binary" MaxLength="64" />
+          <Property Name="eMail" Type="varchar" MaxLength="320" />
           <Property Name="Telefono" Type="char" MaxLength="11" />
           <Property Name="Celular" Type="char" MaxLength="13" />
           <Property Name="Latitud" Type="decimal" Precision="12" Scale="9" />
           <Property Name="Longitud" Type="decimal" Precision="12" Scale="9" />
           <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="IdNet" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <Association Name="FK_Accesos_Localidades">
           <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
@@ -193,6 +264,62 @@
             </Principal>
             <Dependent Role="Administradores">
               <PropertyRef Name="idLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -241,6 +368,30 @@
             </Principal>
             <Dependent Role="Imagenes">
               <PropertyRef Name="IdTipoImagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intereses_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Intereses" Type="Self.Intereses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intereses">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intereses_TiposProyectos">
+          <End Role="TiposProyectos" Type="Self.TiposProyectos" Multiplicity="0..1" />
+          <End Role="Intereses" Type="Self.Intereses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="idTipoProyecto" />
+            </Principal>
+            <Dependent Role="Intereses">
+              <PropertyRef Name="idTipoProyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -328,8 +479,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Usuarios_Localidades">
-          <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
+        <Association Name="FK_Usuarios_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdNet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Localidades1">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Localidades">
@@ -341,11 +504,18 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ProyectoDonArModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Accesos" EntityType="Self.Accesos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Administradores" EntityType="Self.Administradores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Donaciones" EntityType="Self.Donaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intereses" EntityType="Self.Intereses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizaciones" EntityType="Self.Organizaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
@@ -368,6 +538,22 @@
             <End Role="Localidades" EntitySet="Localidades" />
             <End Role="Administradores" EntitySet="Administradores" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_Donaciones_Proyectos" Association="Self.FK_Donaciones_Proyectos">
             <End Role="Proyectos" EntitySet="Proyectos" />
             <End Role="Donaciones" EntitySet="Donaciones" />
@@ -383,6 +569,14 @@
           <AssociationSet Name="FK_Imagenes_TiposImagen" Association="Self.FK_Imagenes_TiposImagen">
             <End Role="TiposImagen" EntitySet="TiposImagen" />
             <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intereses_AspNetUsers" Association="Self.FK_Intereses_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Intereses" EntitySet="Intereses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intereses_TiposProyectos" Association="Self.FK_Intereses_TiposProyectos">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="Intereses" EntitySet="Intereses" />
           </AssociationSet>
           <AssociationSet Name="FK_Localidades_Provincias" Association="Self.FK_Localidades_Provincias">
             <End Role="Provincias" EntitySet="Provincias" />
@@ -412,15 +606,30 @@
             <End Role="TiposTexto" EntitySet="TiposTexto" />
             <End Role="Textos" EntitySet="Textos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_Localidades" Association="Self.FK_Usuarios_Localidades">
+          <AssociationSet Name="FK_Usuarios_AspNetUsers" Association="Self.FK_Usuarios_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Localidades1" Association="Self.FK_Usuarios_Localidades1">
             <End Role="Localidades" EntitySet="Localidades" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoDonArModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Acceso">
           <Key>
             <PropertyRef Name="idAcceso" />
@@ -452,6 +661,57 @@
           <Property Name="FechaBaja" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Localidade" Relationship="Self.FK_Administradores_Localidades" FromRole="Administradores" ToRole="Localidades" />
           <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_Administradores" FromRole="Administradores" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Intereses" Relationship="Self.FK_Intereses_AspNetUsers" FromRole="AspNetUsers" ToRole="Intereses" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_AspNetUsers" FromRole="AspNetUsers" ToRole="Usuarios" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Donacione">
           <Key>
@@ -485,6 +745,16 @@
           <NavigationProperty Name="Proyecto" Relationship="Self.FK_Imagenes_Proyectos" FromRole="Imagenes" ToRole="Proyectos" />
           <NavigationProperty Name="TiposImagen" Relationship="Self.FK_Imagenes_TiposImagen" FromRole="Imagenes" ToRole="TiposImagen" />
         </EntityType>
+        <EntityType Name="Interes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="idTipoProyecto" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Intereses_AspNetUsers" FromRole="Intereses" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TiposProyecto" Relationship="Self.FK_Intereses_TiposProyectos" FromRole="Intereses" ToRole="TiposProyectos" />
+        </EntityType>
         <EntityType Name="Localidade">
           <Key>
             <PropertyRef Name="idLocalidad" />
@@ -496,7 +766,7 @@
           <NavigationProperty Name="Accesos" Relationship="Self.FK_Accesos_Localidades" FromRole="Localidades" ToRole="Accesos" />
           <NavigationProperty Name="Administradores" Relationship="Self.FK_Administradores_Localidades" FromRole="Localidades" ToRole="Administradores" />
           <NavigationProperty Name="Provincia" Relationship="Self.FK_Localidades_Provincias" FromRole="Localidades" ToRole="Provincias" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Localidades" FromRole="Localidades" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Localidades1" FromRole="Localidades" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Organizacione">
           <Key>
@@ -532,14 +802,14 @@
           <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MontoDeseado" Type="Double" />
           <Property Name="MontoActual" Type="Double" />
+          <Property Name="idTipoProyecto" Type="Int32" />
           <NavigationProperty Name="Administradore" Relationship="Self.FK_Proyectos_Administradores" FromRole="Proyectos" ToRole="Administradores" />
           <NavigationProperty Name="Donaciones" Relationship="Self.FK_Donaciones_Proyectos" FromRole="Proyectos" ToRole="Donaciones" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_Proyectos_Estados" FromRole="Proyectos" ToRole="Estados" />
           <NavigationProperty Name="Imagenes" Relationship="Self.FK_Imagenes_Proyectos" FromRole="Proyectos" ToRole="Imagenes" />
           <NavigationProperty Name="Organizacione" Relationship="Self.FK_Proyectos_Organizaciones" FromRole="Proyectos" ToRole="Organizaciones" />
-          <NavigationProperty Name="Textos" Relationship="ProyectoDonArModel.FK_Textos_Proyectos" FromRole="Proyecto" ToRole="Texto" />
-          <Property Name="idTipoProyecto" Type="Int32" />
-          <NavigationProperty Name="TiposProyecto" Relationship="ProyectoDonArModel.FK_Proyectos_TiposProyectos" FromRole="Proyecto" ToRole="TiposProyecto" />
+          <NavigationProperty Name="TiposProyecto" Relationship="Self.FK_Proyectos_TiposProyectos" FromRole="Proyectos" ToRole="TiposProyectos" />
+          <NavigationProperty Name="Textos" Relationship="Self.FK_Textos_Proyectos" FromRole="Proyectos" ToRole="Textos" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -550,6 +820,17 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Texto">
+          <Key>
+            <PropertyRef Name="idTexto" />
+          </Key>
+          <Property Name="idTexto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idTipoTexto" Type="Int32" Nullable="false" />
+          <Property Name="Texto1" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Textos_Proyectos" FromRole="Textos" ToRole="Proyectos" />
+          <NavigationProperty Name="TiposTexto" Relationship="Self.FK_Textos_TiposTexto" FromRole="Textos" ToRole="TiposTexto" />
         </EntityType>
         <EntityType Name="TiposImagen">
           <Key>
@@ -565,27 +846,39 @@
           </Key>
           <Property Name="idTipoProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Proyectos" Relationship="ProyectoDonArModel.FK_Proyectos_TiposProyectos" FromRole="TiposProyecto" ToRole="Proyecto" />
+          <Property Name="URLImagen" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Intereses" Relationship="Self.FK_Intereses_TiposProyectos" FromRole="TiposProyectos" ToRole="Intereses" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_TiposProyectos" FromRole="TiposProyectos" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="TiposTexto">
+          <Key>
+            <PropertyRef Name="idTipoTexto" />
+          </Key>
+          <Property Name="idTipoTexto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Textos" Relationship="Self.FK_Textos_TiposTexto" FromRole="TiposTexto" ToRole="Textos" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idLocalidad" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Usuario1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Contraseña" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
-          <Property Name="eMail" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idLocalidad" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="Binary" MaxLength="64" FixedLength="true" />
+          <Property Name="eMail" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="Celular" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
           <Property Name="Latitud" Type="Decimal" Precision="12" Scale="9" />
           <Property Name="Longitud" Type="Decimal" Precision="12" Scale="9" />
           <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdNet" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Accesos" Relationship="Self.FK_Accesos_Usuarios" FromRole="Usuarios" ToRole="Accesos" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Usuarios_AspNetUsers" FromRole="Usuarios" ToRole="AspNetUsers" />
           <NavigationProperty Name="Donaciones" Relationship="Self.FK_Donaciones_Usuarios" FromRole="Usuarios" ToRole="Donaciones" />
-          <NavigationProperty Name="Localidade" Relationship="Self.FK_Usuarios_Localidades" FromRole="Usuarios" ToRole="Localidades" />
+          <NavigationProperty Name="Localidade" Relationship="Self.FK_Usuarios_Localidades1" FromRole="Usuarios" ToRole="Localidades" />
         </EntityType>
         <Association Name="FK_Accesos_Localidades">
           <End Role="Localidades" Type="Self.Localidade" Multiplicity="1" />
@@ -632,6 +925,58 @@
             </Principal>
             <Dependent Role="Proyectos">
               <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intereses_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Intereses" Type="Self.Interes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intereses">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdNet" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -695,6 +1040,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Intereses_TiposProyectos">
+          <End Role="TiposProyectos" Type="Self.TiposProyecto" Multiplicity="0..1" />
+          <End Role="Intereses" Type="Self.Interes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="idTipoProyecto" />
+            </Principal>
+            <Dependent Role="Intereses">
+              <PropertyRef Name="idTipoProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Localidades_Provincias">
           <End Role="Provincias" Type="Self.Provincia" Multiplicity="1" />
           <End Role="Localidades" Type="Self.Localidade" Multiplicity="*" />
@@ -707,8 +1064,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Usuarios_Localidades">
-          <End Role="Localidades" Type="Self.Localidade" Multiplicity="1" />
+        <Association Name="FK_Usuarios_Localidades1">
+          <End Role="Localidades" Type="Self.Localidade" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Localidades">
@@ -731,19 +1088,67 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Proyectos_TiposProyectos">
+          <End Role="TiposProyectos" Type="Self.TiposProyecto" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="idTipoProyecto" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="idTipoProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Textos_Proyectos">
+          <End Role="Proyectos" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Textos" Type="Self.Texto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Textos">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Textos_TiposTexto">
+          <End Role="TiposTexto" Type="Self.TiposTexto" Multiplicity="1" />
+          <End Role="Textos" Type="Self.Texto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposTexto">
+              <PropertyRef Name="idTipoTexto" />
+            </Principal>
+            <Dependent Role="Textos">
+              <PropertyRef Name="idTipoTexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="ProyectoDonArEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Accesos" EntityType="Self.Acceso" />
           <EntitySet Name="Administradores" EntityType="Self.Administradore" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Donaciones" EntityType="Self.Donacione" />
           <EntitySet Name="Estados" EntityType="Self.Estado" />
           <EntitySet Name="Imagenes" EntityType="Self.Imagene" />
+          <EntitySet Name="Intereses" EntityType="Self.Interes" />
           <EntitySet Name="Localidades" EntityType="Self.Localidade" />
           <EntitySet Name="Organizaciones" EntityType="Self.Organizacione" />
           <EntitySet Name="Provincias" EntityType="Self.Provincia" />
           <EntitySet Name="Proyectos" EntityType="Self.Proyecto" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Textos" EntityType="Self.Texto" />
           <EntitySet Name="TiposImagens" EntityType="Self.TiposImagen" />
           <EntitySet Name="TiposProyectos" EntityType="Self.TiposProyecto" />
+          <EntitySet Name="TiposTextoes" EntityType="Self.TiposTexto" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Accesos_Localidades" Association="Self.FK_Accesos_Localidades">
             <End Role="Localidades" EntitySet="Localidades" />
@@ -760,6 +1165,22 @@
           <AssociationSet Name="FK_Proyectos_Administradores" Association="Self.FK_Proyectos_Administradores">
             <End Role="Administradores" EntitySet="Administradores" />
             <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intereses_AspNetUsers" Association="Self.FK_Intereses_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Intereses" EntitySet="Intereses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_AspNetUsers" Association="Self.FK_Usuarios_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_Donaciones_Proyectos" Association="Self.FK_Donaciones_Proyectos">
             <End Role="Proyectos" EntitySet="Proyectos" />
@@ -781,11 +1202,15 @@
             <End Role="TiposImagen" EntitySet="TiposImagens" />
             <End Role="Imagenes" EntitySet="Imagenes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Intereses_TiposProyectos" Association="Self.FK_Intereses_TiposProyectos">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="Intereses" EntitySet="Intereses" />
+          </AssociationSet>
           <AssociationSet Name="FK_Localidades_Provincias" Association="Self.FK_Localidades_Provincias">
             <End Role="Provincias" EntitySet="Provincias" />
             <End Role="Localidades" EntitySet="Localidades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_Localidades" Association="Self.FK_Usuarios_Localidades">
+          <AssociationSet Name="FK_Usuarios_Localidades1" Association="Self.FK_Usuarios_Localidades1">
             <End Role="Localidades" EntitySet="Localidades" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -793,82 +1218,39 @@
             <End Role="Organizaciones" EntitySet="Organizaciones" />
             <End Role="Proyectos" EntitySet="Proyectos" />
           </AssociationSet>
-          <EntitySet Name="Textos" EntityType="ProyectoDonArModel.Texto" />
-          <EntitySet Name="TiposTextoes" EntityType="ProyectoDonArModel.TiposTexto" />
-          <AssociationSet Name="FK_Textos_Proyectos" Association="ProyectoDonArModel.FK_Textos_Proyectos">
-            <End Role="Proyecto" EntitySet="Proyectos" />
-            <End Role="Texto" EntitySet="Textos" />
+          <AssociationSet Name="FK_Proyectos_TiposProyectos" Association="Self.FK_Proyectos_TiposProyectos">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Textos_TiposTexto" Association="ProyectoDonArModel.FK_Textos_TiposTexto">
+          <AssociationSet Name="FK_Textos_Proyectos" Association="Self.FK_Textos_Proyectos">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Textos" EntitySet="Textos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Textos_TiposTexto" Association="Self.FK_Textos_TiposTexto">
             <End Role="TiposTexto" EntitySet="TiposTextoes" />
-            <End Role="Texto" EntitySet="Textos" />
+            <End Role="Textos" EntitySet="Textos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Proyectos_TiposProyectos" Association="ProyectoDonArModel.FK_Proyectos_TiposProyectos">
-            <End Role="TiposProyecto" EntitySet="TiposProyectos" />
-            <End Role="Proyecto" EntitySet="Proyectos" />
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Texto">
-          <Key>
-            <PropertyRef Name="idTexto" />
-          </Key>
-          <Property Name="idTexto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idProyecto" Type="Int32" Nullable="false" />
-          <Property Name="idTipoTexto" Type="Int32" Nullable="false" />
-          <Property Name="Texto1" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Proyecto" Relationship="ProyectoDonArModel.FK_Textos_Proyectos" FromRole="Texto" ToRole="Proyecto" />
-          <NavigationProperty Name="TiposTexto" Relationship="ProyectoDonArModel.FK_Textos_TiposTexto" FromRole="Texto" ToRole="TiposTexto" />
-        </EntityType>
-        <EntityType Name="TiposTexto">
-          <Key>
-            <PropertyRef Name="idTipoTexto" />
-          </Key>
-          <Property Name="idTipoTexto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Textos" Relationship="ProyectoDonArModel.FK_Textos_TiposTexto" FromRole="TiposTexto" ToRole="Texto" />
-        </EntityType>
-        <Association Name="FK_Textos_Proyectos">
-          <End Type="ProyectoDonArModel.Proyecto" Role="Proyecto" Multiplicity="1" />
-          <End Type="ProyectoDonArModel.Texto" Role="Texto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proyecto">
-              <PropertyRef Name="idProyecto" />
-            </Principal>
-            <Dependent Role="Texto">
-              <PropertyRef Name="idProyecto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Textos_TiposTexto">
-          <End Type="ProyectoDonArModel.TiposTexto" Role="TiposTexto" Multiplicity="1" />
-          <End Type="ProyectoDonArModel.Texto" Role="Texto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposTexto">
-              <PropertyRef Name="idTipoTexto" />
-            </Principal>
-            <Dependent Role="Texto">
-              <PropertyRef Name="idTipoTexto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Proyectos_TiposProyectos">
-          <End Type="ProyectoDonArModel.TiposProyecto" Role="TiposProyecto" Multiplicity="0..1" />
-          <End Type="ProyectoDonArModel.Proyecto" Role="Proyecto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposProyecto">
-              <PropertyRef Name="idTipoProyecto" />
-            </Principal>
-            <Dependent Role="Proyecto">
-              <PropertyRef Name="idTipoProyecto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ProyectoDonArModelStoreContainer" CdmEntityContainer="ProyectoDonArEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Accesos">
             <EntityTypeMapping TypeName="ProyectoDonArModel.Acceso">
               <MappingFragment StoreEntitySet="Accesos">
@@ -899,6 +1281,51 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Donaciones">
             <EntityTypeMapping TypeName="ProyectoDonArModel.Donacione">
               <MappingFragment StoreEntitySet="Donaciones">
@@ -926,6 +1353,15 @@
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdTipoImagen" ColumnName="IdTipoImagen" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intereses">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Interes">
+              <MappingFragment StoreEntitySet="Intereses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idTipoProyecto" ColumnName="idTipoProyecto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -964,7 +1400,6 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="ProyectoDonArModel.Proyecto">
               <MappingFragment StoreEntitySet="Proyectos">
-                <ScalarProperty Name="idTipoProyecto" ColumnName="idTipoProyecto" />
                 <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
                 <ScalarProperty Name="idOrganizacion" ColumnName="idOrganizacion" />
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
@@ -973,6 +1408,7 @@
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="MontoDeseado" ColumnName="MontoDeseado" />
                 <ScalarProperty Name="MontoActual" ColumnName="MontoActual" />
+                <ScalarProperty Name="idTipoProyecto" ColumnName="idTipoProyecto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -984,6 +1420,16 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Textos">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.Texto">
+              <MappingFragment StoreEntitySet="Textos">
+                <ScalarProperty Name="idTexto" ColumnName="idTexto" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idTipoTexto" ColumnName="idTipoTexto" />
+                <ScalarProperty Name="Texto1" ColumnName="Texto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -999,6 +1445,15 @@
             <EntityTypeMapping TypeName="ProyectoDonArModel.TiposProyecto">
               <MappingFragment StoreEntitySet="TiposProyectos">
                 <ScalarProperty Name="idTipoProyecto" ColumnName="idTipoProyecto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="URLImagen" ColumnName="URLImagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposTextoes">
+            <EntityTypeMapping TypeName="ProyectoDonArModel.TiposTexto">
+              <MappingFragment StoreEntitySet="TiposTexto">
+                <ScalarProperty Name="idTipoTexto" ColumnName="idTipoTexto" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1018,27 +1473,18 @@
                 <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="Longitud" ColumnName="Longitud" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="IdNet" ColumnName="IdNet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Textos">
-            <EntityTypeMapping TypeName="ProyectoDonArModel.Texto">
-              <MappingFragment StoreEntitySet="Textos">
-                <ScalarProperty Name="Texto1" ColumnName="Texto" />
-                <ScalarProperty Name="idTipoTexto" ColumnName="idTipoTexto" />
-                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
-                <ScalarProperty Name="idTexto" ColumnName="idTexto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TiposTextoes">
-            <EntityTypeMapping TypeName="ProyectoDonArModel.TiposTexto">
-              <MappingFragment StoreEntitySet="TiposTexto">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="idTipoTexto" ColumnName="idTipoTexto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ProyectoDonArModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

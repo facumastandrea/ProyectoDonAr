@@ -49,6 +49,15 @@ namespace WebApp {
         protected global::System.Web.UI.WebControls.Label lblDescripcionOrganizacion;
         
         /// <summary>
+        /// Control lblMontoDeseado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMontoDeseado;
+        
+        /// <summary>
         /// Control lblIzquierda.
         /// </summary>
         /// <remarks>

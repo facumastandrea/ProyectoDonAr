@@ -4,37 +4,49 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="703592ba825b4d0e8038ad29fc7aa949" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoDonArModel.Acceso" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Administradore" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Donacione" Width="1.5" PointX="9.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Estado" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Imagene" Width="1.5" PointX="9.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Localidade" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Organizacione" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Provincia" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Proyecto" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.TiposImagen" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.TiposProyecto" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Usuario" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+      <Diagram DiagramId="450220173caa42aeaec64a1a4aff6e26" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoDonArModel.C__MigrationHistory" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Acceso" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Administradore" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.AspNetRole" Width="1.5" PointX="1.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.AspNetUser" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Donacione" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Estado" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Imagene" Width="1.5" PointX="11.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Interes" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Localidade" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Organizacione" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Provincia" Width="1.5" PointX="1.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Proyecto" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.sysdiagram" Width="1.5" PointX="11.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Texto" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.TiposImagen" Width="1.5" PointX="9" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.TiposProyecto" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.TiposTexto" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoDonArModel.Usuario" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Accesos_Localidades" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Accesos_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Administradores_Localidades" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Proyectos_Administradores" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Intereses_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Usuarios_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Donaciones_Proyectos" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Donaciones_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Proyectos_Estados" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Imagenes_Proyectos" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Imagenes_TiposImagen" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Intereses_TiposProyectos" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Localidades_Provincias" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoDonArModel.FK_Usuarios_Localidades" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Usuarios_Localidades1" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoDonArModel.FK_Proyectos_Organizaciones" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.Texto" Width="1.5" PointX="12.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ProyectoDonArModel.TiposTexto" Width="1.5" PointX="10.5" PointY="2" />
-        <AssociationConnector Association="ProyectoDonArModel.FK_Textos_Proyectos" />
-        <AssociationConnector Association="ProyectoDonArModel.FK_Textos_TiposTexto" />
-        <AssociationConnector Association="ProyectoDonArModel.FK_Proyectos_TiposProyectos" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Proyectos_TiposProyectos" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Textos_Proyectos" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.FK_Textos_TiposTexto" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoDonArModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

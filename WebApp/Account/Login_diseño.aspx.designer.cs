@@ -13,6 +13,15 @@ namespace WebApp.Account {
     public partial class Login1 {
         
         /// <summary>
+        /// Control ctl01.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm ctl01;
+        
+        /// <summary>
         /// Control Email.
         /// </summary>
         /// <remarks>
@@ -58,15 +67,6 @@ namespace WebApp.Account {
         protected global::System.Web.UI.WebControls.CheckBox RememberMe;
         
         /// <summary>
-        /// Control OpenAuthLogin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::WebApp.Account.OpenAuthProviders OpenAuthLogin;
-        
-        /// <summary>
         /// Control RegisterHyperLink.
         /// </summary>
         /// <remarks>
@@ -74,5 +74,14 @@ namespace WebApp.Account {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
+        
+        /// <summary>
+        /// Control OpenAuthLogin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::WebApp.Account.OpenAuthProviders OpenAuthLogin;
     }
 }

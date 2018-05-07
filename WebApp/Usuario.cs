@@ -22,7 +22,7 @@ namespace WebApp
         }
     
         public int idUsuario { get; set; }
-        public int idLocalidad { get; set; }
+        public Nullable<int> idLocalidad { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Usuario1 { get; set; }
@@ -33,9 +33,11 @@ namespace WebApp
         public Nullable<decimal> Latitud { get; set; }
         public Nullable<decimal> Longitud { get; set; }
         public System.DateTime FechaAlta { get; set; }
+        public string IdNet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Acceso> Accesos { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donacione> Donaciones { get; set; }
         public virtual Localidade Localidade { get; set; }
