@@ -27,7 +27,6 @@ namespace WebApp.Account
                 if (Context.User.Identity.IsAuthenticated)
                 {
                     properties.Dictionary[IdentityHelper.XsrfKey] = Context.User.Identity.GetUserId();
-
                 }
                 Context.GetOwinContext().Authentication.Challenge(properties, provider);
                 Response.StatusCode = 401;
